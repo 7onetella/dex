@@ -8,6 +8,7 @@ import (
 )
 
 var dockerNoPush bool
+var dockerBuildFile string
 
 var dockerBuildTagPushCmd = &cobra.Command{
 	Use:     "build <repo/namespace:tag>",
@@ -23,7 +24,19 @@ var dockerBuildTagPushCmd = &cobra.Command{
 		dockerURI := args[0]
 
 		// docker build -t alpinegovim .
-		cmds := []string{"docker", "build", "-t", dockerURI, ".", "--no-cache=true", "--pull=true"}
+		cmds := []string{"docker", "build"}
+
+		if dockerBuildFile != "" {
+			cmds = append(cmds, "-f")
+			cmds = append(cmds, dockerBuildFile)
+		}
+
+		cmds = append(cmds, "-t")
+		cmds = append(cmds, dockerURI)
+		cmds = append(cmds, "--no-cache=true")
+		cmds = append(cmds, "--pull=true")
+		cmds = append(cmds, ".")
+
 		fmt.Println(cmds)
 		err := execw.Exec(cmds)
 
@@ -44,4 +57,6 @@ func init() {
 	dockerCmd.AddCommand(dockerBuildTagPushCmd)
 
 	dockerBuildTagPushCmd.Flags().BoolVarP(&dockerNoPush, "nopush", "n", false, "docker build & tag, no push")
+	dockerBuildTagPushCmd.Flags().StringVarP(&dockerBuildFile, "file", "f", "", "Dockerfile location")
+
 }
