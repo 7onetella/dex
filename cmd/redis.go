@@ -1,50 +1,32 @@
 package cmd
 
 import (
-	"fmt"
+	"strings"
 
-	"github.com/7onetella/mvk/internal/dockerw"
-	"github.com/7onetella/mvk/internal/net"
+	"github.com/7onetella/mvk/internal/execw"
+
 	"github.com/spf13/cobra"
 )
 
-var redisCmd = &cobra.Command{
-	Use:   "redis <redishost>",
-	Short: "Runs redis client",
-	Long: `Runs redis client
-	
-	redishost     redis hostname
-	`,
-	Example:            "redis redis.mars.com",
+var redisServerCmd = &cobra.Command{
+	Use:                "redis",
+	Short:              "Runs redis server locally",
+	Long:               `Runs redis server locally`,
+	Example:            "redis",
 	DisableFlagParsing: true,
 	Run: func(cmd *cobra.Command, args []string) {
 
-		if len(args) < 1 {
-			cmd.Usage()
-			return
-		}
+		// command := "docker run --name redis-server --net macvlan --rm -d -p 6379:6379 redis:3-alpine"
+		command := "docker run --name redis.local.io --rm -d -p 6379:6379 redis:3-alpine"
+		dockerCmd := strings.Split(command, " ")
 
-		host := args[0]
-		port := "6379"
+		//dockerw.StartDockerConsolePre()
 
-		if len(args) > 1 {
-			port = args[1]
-		}
+		execw.Exec(dockerCmd)
 
-		ok := net.IsTCPConnValid(host, port)
-		if !ok {
-			fmt.Println()
-			fmt.Println(failed + " check network connection. i.e. vpn")
-			return
-		}
-
-		env := []string{}
-		dockerCmd := []string{"redis-cli", "-h", host, "-p", port}
-
-		dockerw.StartDockerConsole("redis:3-alpine", env, dockerCmd)
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(redisCmd)
+	rootCmd.AddCommand(redisServerCmd)
 }
