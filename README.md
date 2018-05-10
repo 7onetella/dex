@@ -1,6 +1,8 @@
-# mvk 
+# dex 
 
-mvk is a command line tool to automate simple little things that makes life fun
+dex is a command line tool to automate simple little things that makes life fun
 
-* IMHO - go makes better 
+dex - dextroamphetamine sulfate - drug used in treating ADHD
+
+
 

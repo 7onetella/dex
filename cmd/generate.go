@@ -9,8 +9,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var autoCompleteSh = "mvk_autocomplete.sh"
-var autoCompleteZsh = "_mvk_autocomplete"
+var autoCompleteSh = "dex_autocomplete.sh"
+var autoCompleteZsh = "_dex_autocomplete"
 
 // ecsCmd represents the ecs command
 var generateCmd = &cobra.Command{
