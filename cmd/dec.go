@@ -5,7 +5,7 @@ import (
 
 	"encoding/hex"
 
-	"github.com/7onetella/mvk/internal/crypto"
+	"github.com/7onetella/dex/internal/crypto"
 	"github.com/spf13/cobra"
 )
 

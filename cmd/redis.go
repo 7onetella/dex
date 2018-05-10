@@ -3,7 +3,7 @@ package cmd
 import (
 	"strings"
 
-	"github.com/7onetella/mvk/internal/execw"
+	"github.com/7onetella/dex/internal/execw"
 
 	"github.com/spf13/cobra"
 )

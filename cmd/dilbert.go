@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/7onetella/mvk/internal/img"
-	"github.com/7onetella/mvk/internal/xpath"
+	"github.com/7onetella/dex/internal/img"
+	"github.com/7onetella/dex/internal/xpath"
 	"github.com/spf13/cobra"
 )
 

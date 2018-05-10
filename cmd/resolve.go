@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/7onetella/mvk/internal/dockerw"
+	"github.com/7onetella/dex/internal/dockerw"
 	"github.com/spf13/cobra"
 )
 

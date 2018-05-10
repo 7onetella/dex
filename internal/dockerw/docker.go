@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/7onetella/mvk/internal/execw"
+	"github.com/7onetella/dex/internal/execw"
 	dockerpty "github.com/fgrehm/go-dockerpty"
 	docker "github.com/fsouza/go-dockerclient"
 )

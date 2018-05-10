@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/7onetella/mvk/internal/img"
+	"github.com/7onetella/dex/internal/img"
 	"github.com/spf13/cobra"
 )
 

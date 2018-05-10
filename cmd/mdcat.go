@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/7onetella/mvk/internal/mdcat"
+	"github.com/7onetella/dex/internal/mdcat"
 	"github.com/spf13/cobra"
 )
 

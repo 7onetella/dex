@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/7onetella/mvk/cmd"
+import "github.com/7onetella/dex/cmd"
 
 func main() {
 	cmd.Execute()
