@@ -9,8 +9,8 @@ import (
 
 var resolveCmd = &cobra.Command{
 	Use:   "resolve <container-name>",
-	Short: "Resolves container's ip by name",
-	Long: `Resolves container's ip by name
+	Short: "Resolves container ip by container name",
+	Long: `Resolves container ip by container name
 	
 	container-name     docker container name
 	`,
