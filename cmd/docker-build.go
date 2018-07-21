@@ -46,9 +46,11 @@ var dockerBuildTagPushCmd = &cobra.Command{
 		}
 
 		// docker push 7onetella/alpinegovim:1.0.0
-		cmds = []string{"docker", "push", dockerURI}
-		fmt.Println(cmds)
-		execw.Exec(cmds)
+		if !dockerNoPush {
+			cmds = []string{"docker", "push", dockerURI}
+			fmt.Println(cmds)
+			execw.Exec(cmds)
+		}
 
 	},
 }
