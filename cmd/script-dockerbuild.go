@@ -31,7 +31,7 @@ var scriptDockerBuildCmd = &cobra.Command{
 # e.g. maven build using docker container
 # e.g. sbt   build using docker container`,
 		}
-		templateExecute(data, w)
+		templateExecute(data, w, scriptDockerBuildCmdTemplate)
 		w.Flush()
 
 	},
@@ -46,8 +46,8 @@ func init() {
 }
 
 // RecordFailedLinksAsTXT writes filed links as txt
-func templateExecute(ctx interface{}, w io.Writer) {
-	tmpl, err := template.New("docker build template").Parse(scriptDockerBuildCmdTemplate)
+func templateExecute(ctx interface{}, w io.Writer, templateContent string) {
+	tmpl, err := template.New("docker build template").Parse(templateContent)
 	if err == nil {
 		tmpl.Execute(w, ctx)
 	}
