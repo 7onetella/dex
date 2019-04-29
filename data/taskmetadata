@@ -1,0 +1,26 @@
+{
+   "Arn":"arn:aws:ecs:us-east-1:123456789012:task/23424abc-2342-2343-2344-abcdef343434",
+   "DesiredStatus":"RUNNING",
+   "KnownStatus":"RUNNING",
+   "Family":"hello-world",
+   "Version":"1",
+   "Containers":[
+      {
+         "DockerId":"abc239847234958734985734957348957349875987347598347589734957234d",
+         "DockerName":"ecs-dev-myapi-TaskDef-1243434343434-10-dev-myapi-abcdef23423423423423",
+         "Name":"dev-myapi",
+         "Ports":[
+            {
+               "ContainerPort":8080,
+               "Protocol":"tcp",
+               "HostPort":32778
+            },
+            {
+               "ContainerPort":9000,
+               "Protocol":"tcp",
+               "HostPort":32779
+            }
+         ]
+      }
+   ]
+}
