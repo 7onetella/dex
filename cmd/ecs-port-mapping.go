@@ -14,11 +14,17 @@ var portMappingCmdTestMode bool
 
 var myBool bool
 
+/*
+	this command assumes the first container's data is the data to be used in generating the output
+*/
 var portMappingCmd = &cobra.Command{
-	Use:     "port-mapping",
-	Short:   "Gets ECS port mapping",
-	Long:    `Gets ECS port mapping`,
-	Example: "port-mapping",
+	Use:   "port-mapping",
+	Short: "Gets ECS port mapping",
+	Long:  `Gets ECS port mapping`,
+	Example: `port-mapping -t
+export EC2_HOST=192.168.0.100
+export PORT_TCP_8080=32778
+export PORT_TCP_9000=32779`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		e := ecsw.NewECSMetaDataRetriever()
@@ -36,16 +42,12 @@ var portMappingCmd = &cobra.Command{
 		handleError("", err)
 
 		fmt.Printf("export EC2_HOST=%s\n", ec2Host)
-		for _, container := range task.Containers {
-			if container.DockerID == dockerID {
-				for i, port := range container.Ports {
-					if i == 0 {
-						fmt.Printf("export PORT_%s_%d=%d", strings.ToUpper(port.Protocol), port.ContainerPort, port.HostPort)
-						continue
-					} else {
-						fmt.Printf("\nexport PORT_%s_%d=%d", strings.ToUpper(port.Protocol), port.ContainerPort, port.HostPort)
-					}
-				}
+		for i, port := range task.Containers[0].Ports {
+			if i == 0 {
+				fmt.Printf("export PORT_%s_%d=%d", strings.ToUpper(port.Protocol), port.ContainerPort, port.HostPort)
+				continue
+			} else {
+				fmt.Printf("\nexport PORT_%s_%d=%d", strings.ToUpper(port.Protocol), port.ContainerPort, port.HostPort)
 			}
 		}
 
