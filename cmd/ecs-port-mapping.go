@@ -36,12 +36,16 @@ var portMappingCmd = &cobra.Command{
 		handleError("", err)
 
 		fmt.Printf("export EC2_HOST=%s\n", ec2Host)
-		for i, port := range task.Containers[0].Ports {
-			if i == 0 {
-				fmt.Printf("export PORT_%s_%d=%d", strings.ToUpper(port.Protocol), port.ContainerPort, port.HostPort)
-				continue
-			} else {
-				fmt.Printf("\nexport PORT_%s_%d=%d", strings.ToUpper(port.Protocol), port.ContainerPort, port.HostPort)
+		for _, container := range task.Containers {
+			if container.DockerID == dockerID {
+				for i, port := range container.Ports {
+					if i == 0 {
+						fmt.Printf("export PORT_%s_%d=%d", strings.ToUpper(port.Protocol), port.ContainerPort, port.HostPort)
+						continue
+					} else {
+						fmt.Printf("\nexport PORT_%s_%d=%d", strings.ToUpper(port.Protocol), port.ContainerPort, port.HostPort)
+					}
+				}
 			}
 		}
 
