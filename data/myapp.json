@@ -1,0 +1,21 @@
+{
+  "ID": "myapp",
+  "Name": "myapp",
+  "Tags": [
+    "urlprefix-myapp.example.com/foo"
+  ],
+  "Address": "10.10.10.10",
+  "Port": 32768,
+  "Meta": {
+    "version": "1.0.0"
+  },
+  "EnableTagOverride": true,
+  "Check": {
+    "HTTP": "http://10.10.10.10:32768/foo/health",
+    "Interval": "10s"
+  },
+  "Weights": {
+    "Passing": 3,
+    "Warning": 1
+  }
+}

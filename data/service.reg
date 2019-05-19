@@ -1,0 +1,4 @@
+curl \
+    --request PUT \
+    --data @myapp.json \
+    http://169.254.1.1:8500/v1/agent/service/register
